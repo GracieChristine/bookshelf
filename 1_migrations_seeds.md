@@ -40,7 +40,7 @@ bash -c 'echo "JWT_KEY="$(openssl rand -base64 64)' > .env
 Finally, ensure the test suite can connect to the right database.
 
 ```shell
-npm test test/part1.migrations.test.js
+
 ```
 
 The tests will not pass, but if you cannot connect to the test database, you'll get the following error.
