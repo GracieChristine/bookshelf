@@ -26,6 +26,7 @@ module.exports = {
    "prefer-template": "off",
    "no-negated-condition": "off",
    "no-console": "off",
-   "max-parmas": "off"
+   "max-parmas": "off",
+   "no-undefined": "off"
  }
 };
