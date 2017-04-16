@@ -38,11 +38,11 @@ router.get("/check", (req, res, next) => {
   if (!req.cookies.token) {
     return next(boom.create(401, "Unauthorized"));
   }
-
-  //  GET /favorites/check?bookId=one
-  if (typeof req.query.bookId !== "number") {
-    return next(boom.create(400, "Book ID must be an integer"));
-  }
+  //
+  // //  GET /favorites/check?bookId=one
+  // if (typeof req.query.bookId !== "number") {
+  //   return next(boom.create(400, "Book ID must be an integer"));
+  // }
 
   //  GET /favorites/check?bookId=1 & GET /favorites/check?bookId=2 with token
   else {
@@ -71,15 +71,15 @@ router.post("/", (req, res, next) => {
     next(boom.create(401, "Unauthorized"));
   }
 
-  //  POST /favorites with non-integer bookId
-  if (typeof req.body.bookId !== "number") {
-    return next(boom.create(400, "Book ID must be an integer"));
-  }
-
-  //  POST /favorites with unknown bookId
-  if (req.body.bookId !== req.params.bookId) {
-    return next(boom.create(404, "Book not found"));
-  }
+  // //  POST /favorites with non-integer bookId
+  // if (typeof req.body.bookId !== "number") {
+  //   return next(boom.create(400, "Book ID must be an integer"));
+  // }
+  //
+  // //  POST /favorites with unknown bookId
+  // if (req.body.bookId !== req.params.bookId) {
+  //   return next(boom.create(404, "Book not found"));
+  // }
 
   //  POST /favorites with token
   else {
@@ -107,15 +107,15 @@ router.delete("/", (req, res, next) => {
     return next(boom.create(401, "Unauthorized"));
   }
 
-  //  DELETE /favorites with non-integer bookId
-  if (typeof req.body.bookId !== "number") {
-    return next(boom.create(400, "Book ID must be an integer"));
-  }
-
-  //  DELETE /favorites with unknown favorite
-  if (req.body.bookId !== req.params.bookId) {
-    return next(boom.create(404, "Favorite not found"));
-  }
+  // //  DELETE /favorites with non-integer bookId
+  // if (typeof req.body.bookId !== "number") {
+  //   return next(boom.create(400, "Book ID must be an integer"));
+  // }
+  //
+  // //  DELETE /favorites with unknown favorite
+  // if (req.body.bookId !== req.params.bookId) {
+  //   return next(boom.create(404, "Favorite not found"));
+  // }
 
   //  DELETE /favorites with token
   else {

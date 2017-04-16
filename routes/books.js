@@ -25,16 +25,16 @@ router.get("/", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;
 
-  //  GET /books/9000 & GET /books/-1
-  if (!id) {
-    return next(boom.create(404, "Not Found"));
-  }
-
-  //  GET /books/one
-  else if (typeof id !== "number") {
-    return next(boom.create(404, "Not Found"));
-  }
-  else {
+  // //  GET /books/9000 & GET /books/-1
+  // if (!id) {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  //
+  // //  GET /books/one
+  // else if (typeof id !== "number") {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  // else {
     return knex("books")
       .where("id", id)
       .then((books) => {
@@ -44,7 +44,7 @@ router.get("/:id", (req, res, next) => {
       .catch((error) => {
         next(error);
       });
-  }
+  // }
 });
 
 //  POST /books
@@ -99,16 +99,16 @@ router.patch("/:id", (req, res, next) => {
   let id = req.params.id;
   let updateBook = req.body;
 
-  //  PATCH /books/9000 &  PATCH /books/-1
-  if (id !== "id") {
-    return next(boom.create(404, "Not Found"));
-  }
-
-  //  PATCH /books/one
-  else if (typeof id !== "number") {
-    return next(boom.create(404, "Not Found"));
-  }
-  else {
+  // //  PATCH /books/9000 &  PATCH /books/-1
+  // if (id !== "id") {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  //
+  // //  PATCH /books/one
+  // else if (typeof id !== "number") {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  // else {
     return knex("books")
       .returning(["id", "title", "author", "genre", "description", "cover_url"])
       .where("id", id)
@@ -126,23 +126,23 @@ router.patch("/:id", (req, res, next) => {
       .catch((error) => {
         next(error);
       });
-  }
+  // }
 });
 
 //  DELETE /books/:id
 router.delete("/:id", (req, res, next) => {
   let id = req.params.id
 
-  //  DELETE /books/9000 &  DELETE /books/-1
-  if (id !== "id") {
-    return next(boom.create(404, "Not Found"));
-  }
-
-  //  DELETE /books/one
-  else if (typeof id !== "number") {
-    return next(boom.create(404, "Not Found"));
-  }
-  else {
+  // //  DELETE /books/9000 &  DELETE /books/-1
+  // if (id !== "id") {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  //
+  // //  DELETE /books/one
+  // else if (typeof id !== "number") {
+  //   return next(boom.create(404, "Not Found"));
+  // }
+  // else {
     return knex("books")
       .returning(["title", "author", "genre", "description", "cover_url"])
       .where("id", id)
@@ -154,7 +154,7 @@ router.delete("/:id", (req, res, next) => {
       .catch((error) => {
         next(error);
       });
-  }
+  // }
 });
 
 module.exports = router;
