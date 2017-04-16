@@ -6,7 +6,7 @@ let knex = require("../knex");
 let {
       camelizeKeys,
       decamelizeKeys
-    } = require('humps');
+    } = require("humps");
 let boom = require("boom");
 
 //  GET /books

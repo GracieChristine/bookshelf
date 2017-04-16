@@ -1,10 +1,33 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+let express = require("express");
+let router = express.Router();
+let knex = require("../knex");
+let {
+      camelizeKeys,
+      decamelizeKeys
+    } = require("humps");
+let bcrypt = require("bcrypt");
+let boom = require("boom");
 
-// eslint-disable-next-line new-cap
-const router = express.Router();
+//  POST USER
+router.post("/", (req, res, next) => {
+  let newUser = req.body;
 
-// YOUR CODE HERE
+  knex("users")
+    .returning(["id", "first_name", "last_name", "email"])
+    .insert({
+      first_name: newUser.firstName,
+      last_name: newUser.lastName,
+      email: newUser.email,
+      hashed_password: bcrypt.hashSync(newUser.password, 10)
+    })
+    .then((users) => {
+      res.send(camelizeKeys(users[0]))
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 module.exports = router;
