@@ -9,9 +9,11 @@ let {
     } = require("humps");
 let bcrypt = require("bcrypt");
 let boom = require("boom");
+let ev = require("express-validation");
+let validations = require("../validations/users");
 
 //  POST USER
-router.post("/", (req, res, next) => {
+router.post("/", ev(validations.post), (req, res, next) => {
   let newUser = req.body;
 
   if (!newUser.email || newUser.email.trim() === "") {

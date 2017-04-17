@@ -11,6 +11,8 @@ let bcrypt = require("bcrypt");
 let boom = require("boom");
 let jwt = require("jsonwebtoken");
 let cookie = require("cookie-session");
+let ev = require("express-validation");
+let validations = require("../validations/token");
 
 //  GET
 router.get("/", (req, res, next) => {
@@ -25,7 +27,7 @@ router.get("/", (req, res, next) => {
 });
 
 //  POST
-router.post("/", (req, res, next) => {
+router.post("/", ev(validations.post), (req, res, next) => {
   let email = req.body.email;
   let password = req.body.password;
 

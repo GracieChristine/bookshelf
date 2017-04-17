@@ -11,6 +11,8 @@ let bcrypt = require("bcrypt");
 let boom = require("boom");
 let jwt = require("jsonwebtoken");
 let cookie = require("cookie-session");
+// let ev = require("express-validation");
+// let validations = require("../validations/favorites");
 
 //  GET
 router.get("/", (req, res, next) => {

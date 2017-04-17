@@ -8,6 +8,8 @@ let {
       decamelizeKeys
     } = require("humps");
 let boom = require("boom");
+let ev = require("express-validation");
+let validations = require("../validations/books");
 
 //  GET /books
 router.get("/", (req, res, next) => {
@@ -48,7 +50,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 //  POST /books
-router.post("/", (req, res, next) => {
+router.post("/", ev(validations.post), (req, res, next) => {
   let addBook = req.body
 
   //  POST /books without title
